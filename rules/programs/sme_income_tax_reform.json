@@ -1,0 +1,58 @@
+{
+  "id": "sme_income_tax_reform",
+  "name": "중소기업 취업 청년 소득세 감면 (2026 세제개편안: 지방 차등)",
+  "category": "tax",
+  "status": "planned",
+  "selection": "entitlement",
+  "group": "sme_income_tax",
+  "priority": 2,
+  "valid": {
+    "hire_from": "2027-01-01",
+    "hire_to": "2029-12-31"
+  },
+  "conditions": [
+    {
+      "field": "age",
+      "op": "between",
+      "value": [
+        15,
+        34
+      ]
+    },
+    {
+      "field": "company_size",
+      "op": "eq",
+      "value": "중소"
+    }
+  ],
+  "benefit": {
+    "type": "tax_reduction",
+    "rate": 0.9,
+    "annual_cap": 2000000,
+    "years_by": "work_region.tax_tier",
+    "table": {
+      "I": 5,
+      "II": 6,
+      "III": 7,
+      "IV": 10
+    }
+  },
+  "sources": [
+    {
+      "title": "정책브리핑 - 2026년 세제개편안 (지역 분류 I~IV, 5·6·7·10년)",
+      "url": "https://m.korea.kr/news/policyNewsView.do?newsId=148969672",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "시대일보 - 수도권 5년, 비수도권 광역시 6년, 기타 7년, 우대지역 10년",
+      "url": "https://www.sidae.com/article/2026080319105315841",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "파이낸셜뉴스 - 적용기한 3년 연장",
+      "url": "https://fnnews.com/news/202608031835042008",
+      "checked": "2026-11-20"
+    }
+  ],
+  "note": "국회 심의 중인 정부안. 지역 분류 I(수도권)·II(비수도권 광역시 등)·III(기타 비수도권)·IV(우대지역)의 시군 목록은 시행령에서 확정 → regions.csv의 tax_tier는 잠정값."
+}

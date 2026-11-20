@@ -1,0 +1,62 @@
+{
+  "id": "seoul_moving_support",
+  "name": "서울시 청년 부동산 중개보수·이사비 지원",
+  "category": "one_time",
+  "status": "confirmed",
+  "selection": "selective",
+  "group": "seoul_moving_support",
+  "priority": 1,
+  "valid": {
+    "hire_from": "2026-01-01",
+    "hire_to": "2099-12-31"
+  },
+  "conditions": [
+    {
+      "field": "residence_region.sido",
+      "op": "eq",
+      "value": "서울"
+    },
+    {
+      "field": "relocating",
+      "op": "eq",
+      "value": true
+    },
+    {
+      "field": "age",
+      "op": "between",
+      "value": [
+        19,
+        39
+      ]
+    },
+    {
+      "field": "homeless",
+      "op": "eq",
+      "value": true,
+      "on_unknown": "ask"
+    },
+    {
+      "field": "income_median_ratio",
+      "op": "lte",
+      "value": 150
+    },
+    {
+      "field": "housing_trade_amount",
+      "op": "lte",
+      "value": 200000000
+    }
+  ],
+  "benefit": {
+    "type": "one_time",
+    "amount": 400000,
+    "at_month": 1
+  },
+  "sources": [
+    {
+      "title": "내 손안에 서울 - 2026 청년 중개보수·이사비 지원 (최대 40만원, 생애 1회 실비)",
+      "url": "https://mediahub.seoul.go.kr/archives/2017662",
+      "checked": "2026-11-20"
+    }
+  ],
+  "note": "실비 기준 최대 40만원. 반기별 모집·소득 낮은 순 선정 → 선정 시 추가로만 표시. 거래금액 = 보증금 + 월세×100."
+}

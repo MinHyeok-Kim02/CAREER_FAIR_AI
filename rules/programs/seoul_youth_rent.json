@@ -1,0 +1,78 @@
+{
+  "id": "seoul_youth_rent",
+  "name": "서울시 청년월세지원",
+  "category": "rent",
+  "status": "confirmed",
+  "selection": "selective",
+  "group": "youth_rent_seoul",
+  "priority": 1,
+  "valid": {
+    "hire_from": "2026-01-01",
+    "hire_to": "2099-12-31"
+  },
+  "conditions": [
+    {
+      "field": "residence_region.sido",
+      "op": "eq",
+      "value": "서울"
+    },
+    {
+      "field": "age",
+      "op": "between",
+      "value": [
+        19,
+        39
+      ]
+    },
+    {
+      "field": "residence_type",
+      "op": "eq",
+      "value": "자취"
+    },
+    {
+      "field": "homeless",
+      "op": "eq",
+      "value": true,
+      "on_unknown": "ask"
+    },
+    {
+      "field": "income_median_ratio",
+      "op": "gt",
+      "value": 48
+    },
+    {
+      "field": "income_median_ratio",
+      "op": "lte",
+      "value": 150
+    },
+    {
+      "field": "deposit",
+      "op": "lte",
+      "value": 80000000
+    },
+    {
+      "field": "monthly_rent",
+      "op": "lte",
+      "value": 600000
+    }
+  ],
+  "benefit": {
+    "type": "monthly",
+    "base_field": "monthly_rent",
+    "cap": 200000,
+    "months": 12
+  },
+  "sources": [
+    {
+      "title": "내 손안에 서울 - 2026 청년월세지원 (중위 48~150%, 월 20만원×12개월)",
+      "url": "https://mediahub.seoul.go.kr/archives/2018004",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "서울주거포털 - 청년월세지원 소득 기준",
+      "url": "https://housing.seoul.go.kr/site/main/content/sh01_060513",
+      "checked": "2026-11-20"
+    }
+  ],
+  "note": "연 1회 모집(2026년은 5월 접수 마감), 1만 5천 명 선정 → 선정 시 추가로만 표시. 월세 60만원 초과라도 보증금 환산(5%)+월세 ≤ 93만원이면 신청 가능. 국토부 청년월세와 중복 수혜 불가."
+}

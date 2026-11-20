@@ -1,0 +1,47 @@
+{
+  "id": "sme_income_tax_2026",
+  "name": "중소기업 취업 청년 소득세 감면 (현행)",
+  "category": "tax",
+  "status": "confirmed",
+  "selection": "entitlement",
+  "group": "sme_income_tax",
+  "priority": 1,
+  "valid": {
+    "hire_from": "2012-01-01",
+    "hire_to": "2026-12-31"
+  },
+  "conditions": [
+    {
+      "field": "age",
+      "op": "between",
+      "value": [
+        15,
+        34
+      ]
+    },
+    {
+      "field": "company_size",
+      "op": "eq",
+      "value": "중소"
+    }
+  ],
+  "benefit": {
+    "type": "tax_reduction",
+    "rate": 0.9,
+    "annual_cap": 2000000,
+    "years": 5
+  },
+  "sources": [
+    {
+      "title": "뉴시스 - 청년 5년간 90%, 연 200만원 한도",
+      "url": "https://www.newsis.com/view/NISX20260803_0003734455",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "국회입법예고 - 현행 특례 2026.12.31. 종료 예정",
+      "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219112/detailRP",
+      "checked": "2026-11-20"
+    }
+  ],
+  "note": "중견·대기업 제외. 일부 업종(금융·보험, 전문서비스 등) 제외 → 업종 확인 필요. 병역 기간(최대 6년)은 나이 계산에서 제외. 회사에 감면 신청서 제출 필요."
+}

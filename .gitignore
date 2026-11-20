@@ -1,0 +1,5 @@
+.streamlit/secrets.toml
+.env
+__pycache__/
+# 주최 측 첨부 PDF는 공개 저장소에 올리지 않음
+docs/*.pdf

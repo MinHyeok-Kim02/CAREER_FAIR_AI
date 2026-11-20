@@ -1,0 +1,68 @@
+{
+  "id": "assumptions",
+  "status": "assumption",
+  "note": "제도가 아닌 가정값. 화면에서 사용자가 바꿀 수 있고, 결과에 '가정'으로 표시.",
+  "salary_growth_rate": {
+    "value": 0.03,
+    "label": "연봉 상승률(연)"
+  },
+  "projection_years": {
+    "value": [
+      1,
+      2,
+      5
+    ],
+    "label": "비교 기간(년)"
+  },
+  "household_size": {
+    "value": 1,
+    "label": "중위소득 판정 가구원 수 (본인 1인 가구 가정)"
+  },
+  "nontaxable_meal_monthly": {
+    "value": 0,
+    "label": "비과세 식대(월). 오퍼에 별도 표기가 있을 때만 입력"
+  },
+  "saving_monthly": {
+    "value": 500000,
+    "label": "청년미래적금 월 납입액"
+  },
+  "housing": {
+    "본가": {
+      "monthly_rent": 0,
+      "maintenance_fee": 0,
+      "deposit": 0,
+      "label": "본가 거주: 주거비 0 가정"
+    },
+    "기숙사": {
+      "monthly_rent": 0,
+      "maintenance_fee": 100000,
+      "deposit": 0,
+      "label": "기숙사: 오퍼에 비용이 없으면 관리비만 가정"
+    },
+    "자취": {
+      "monthly_rent": null,
+      "maintenance_fee": 100000,
+      "deposit": 10000000,
+      "label": "자취: 월세는 전월세 실거래가 평균(data/rent_cache.csv)에서 채움"
+    }
+  },
+  "deposit_opportunity_rate": {
+    "value": 0.03,
+    "label": "보증금 기회비용(연, 예금금리 수준 가정)"
+  },
+  "moving": {
+    "same_region": {
+      "value": 300000,
+      "label": "같은 지역 내 이사비"
+    },
+    "long_distance": {
+      "value": 1000000,
+      "label": "다른 시도로 이사(이사비+중개보수)"
+    },
+    "initial_setup": {
+      "value": 1000000,
+      "label": "첫 자취 초기 비용(가구·가전)"
+    }
+  },
+  "checked": "2026-11-20"
+}

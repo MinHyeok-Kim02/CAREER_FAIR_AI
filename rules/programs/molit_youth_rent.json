@@ -1,0 +1,64 @@
+{
+  "id": "molit_youth_rent",
+  "name": "청년월세 지원 (국토교통부)",
+  "category": "rent",
+  "status": "confirmed",
+  "selection": "entitlement",
+  "group": "youth_rent_national",
+  "priority": 1,
+  "valid": {
+    "hire_from": "2026-01-01",
+    "hire_to": "2099-12-31"
+  },
+  "conditions": [
+    {
+      "field": "age",
+      "op": "between",
+      "value": [
+        19,
+        34
+      ]
+    },
+    {
+      "field": "residence_type",
+      "op": "eq",
+      "value": "자취"
+    },
+    {
+      "field": "homeless",
+      "op": "eq",
+      "value": true,
+      "on_unknown": "ask"
+    },
+    {
+      "field": "income_median_ratio",
+      "op": "lte",
+      "value": 60
+    },
+    {
+      "field": "parent_household_median_ratio",
+      "op": "lte",
+      "value": 100,
+      "on_unknown": "warn"
+    }
+  ],
+  "benefit": {
+    "type": "monthly",
+    "base_field": "monthly_rent",
+    "cap": 200000,
+    "months": 24
+  },
+  "sources": [
+    {
+      "title": "복지로 - 2026년 청년월세 지원 신청 안내 (월 20만원, 최대 24개월, 생애 1회)",
+      "url": "https://www.bokjiro.go.kr/ssis-tbu/cms/pc/customer/notice/1309500_1141.html",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "전주시 - 2026 청년월세 지원사업 안내 (청년가구 중위 60%, 원가구 100%)",
+      "url": "https://jeonju.go.kr/youth2/download/programguide.pdf",
+      "checked": "2026-11-20"
+    }
+  ],
+  "note": "부모와 별도 거주하는 무주택 청년. 실제 월세 범위 안에서 지원(보증금·관리비 제외). 소득은 신청 시점 기준이라, 취업 후 연봉 기준으로는 대부분 대상에서 빠짐."
+}

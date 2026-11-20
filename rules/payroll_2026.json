@@ -1,0 +1,151 @@
+{
+  "id": "payroll_2026",
+  "status": "confirmed",
+  "social_insurance_employee": {
+    "national_pension": {
+      "rate_by_year": {
+        "2026": 0.0475,
+        "2027": 0.05,
+        "2028": 0.0525,
+        "2029": 0.055,
+        "2030": 0.0575,
+        "2031": 0.06
+      },
+      "monthly_base_cap": 6590000,
+      "monthly_base_floor": 400000,
+      "note": "연금개혁: 2026년 9.5%부터 매년 0.5%p 인상(2033년 13%), 근로자 절반 부담. 상·하한은 2026.7~ 기준, 이후 연도는 고정 가정."
+    },
+    "health_insurance": {
+      "rate": 0.03595,
+      "note": "2027년 이후 요율 미정 → 2026년 값 유지 가정"
+    },
+    "long_term_care": {
+      "rate_of_health": 0.1314
+    },
+    "employment_insurance": {
+      "rate": 0.009
+    }
+  },
+  "income_tax": {
+    "earned_income_deduction": [
+      {
+        "upto": 5000000,
+        "base": 0,
+        "rate": 0.7,
+        "over": 0
+      },
+      {
+        "upto": 15000000,
+        "base": 3500000,
+        "rate": 0.4,
+        "over": 5000000
+      },
+      {
+        "upto": 45000000,
+        "base": 7500000,
+        "rate": 0.15,
+        "over": 15000000
+      },
+      {
+        "upto": 100000000,
+        "base": 12000000,
+        "rate": 0.05,
+        "over": 45000000
+      },
+      {
+        "upto": null,
+        "base": 14750000,
+        "rate": 0.02,
+        "over": 100000000
+      }
+    ],
+    "earned_income_deduction_cap": 20000000,
+    "basic_deduction_per_person": 1500000,
+    "brackets": [
+      {
+        "upto": 14000000,
+        "rate": 0.06,
+        "progressive_deduction": 0
+      },
+      {
+        "upto": 50000000,
+        "rate": 0.15,
+        "progressive_deduction": 1260000
+      },
+      {
+        "upto": 88000000,
+        "rate": 0.24,
+        "progressive_deduction": 5760000
+      },
+      {
+        "upto": 150000000,
+        "rate": 0.35,
+        "progressive_deduction": 15440000
+      },
+      {
+        "upto": 300000000,
+        "rate": 0.38,
+        "progressive_deduction": 19940000
+      },
+      {
+        "upto": 500000000,
+        "rate": 0.4,
+        "progressive_deduction": 25940000
+      },
+      {
+        "upto": 1000000000,
+        "rate": 0.42,
+        "progressive_deduction": 35940000
+      },
+      {
+        "upto": null,
+        "rate": 0.45,
+        "progressive_deduction": 65940000
+      }
+    ],
+    "earned_income_tax_credit": {
+      "rate_low": 0.55,
+      "threshold": 1300000,
+      "base_high": 715000,
+      "rate_high": 0.3,
+      "limit": [
+        {
+          "salary_upto": 33000000,
+          "limit": 740000
+        },
+        {
+          "salary_upto": 70000000,
+          "formula": "max(660000, 740000 - (salary - 33000000) * 0.008)"
+        },
+        {
+          "salary_upto": 120000000,
+          "formula": "max(500000, 660000 - (salary - 70000000) * 0.5)"
+        },
+        {
+          "salary_upto": null,
+          "formula": "max(200000, 500000 - (salary - 120000000) * 0.5)"
+        }
+      ]
+    },
+    "standard_tax_credit": 130000,
+    "local_income_tax_rate": 0.1,
+    "note": "연말정산 기준 근사치(1인 가구, 본인 기본공제·표준세액공제만). 월별 간이세액표 원천징수와 차이가 있을 수 있음."
+  },
+  "median_income_monthly": {
+    "1": 2564238,
+    "year": 2026
+  },
+  "sources": [
+    {
+      "title": "4대보험 2026 요율 (국민연금 9.5%, 건강보험 7.19%, 장기요양 13.14%, 고용 0.9%)",
+      "url": "https://www.bizforms.co.kr/365guide/view.asp?number=309",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "보건복지부 - 2026년 기준 중위소득 (1인 2,564,238원)",
+      "url": "https://www.mohw.go.kr/menu.es?mid=a10708010900",
+      "checked": "2026-11-20"
+    }
+  ],
+  "checked": "2026-11-20"
+}

@@ -1,1 +1,1 @@
-# CAREER-FAIR---AI-
+# jinjja-yeonbong

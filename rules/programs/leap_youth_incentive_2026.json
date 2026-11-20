@@ -1,0 +1,100 @@
+{
+  "id": "leap_youth_incentive_2026",
+  "name": "청년일자리도약장려금 청년 근속지원금 (2026)",
+  "category": "subsidy",
+  "status": "confirmed",
+  "selection": "entitlement",
+  "group": "leap_youth_incentive",
+  "priority": 1,
+  "valid": {
+    "hire_from": "2026-01-01",
+    "hire_to": "2026-12-31"
+  },
+  "conditions": [
+    {
+      "field": "age",
+      "op": "between",
+      "value": [
+        15,
+        34
+      ]
+    },
+    {
+      "field": "employment_type",
+      "op": "eq",
+      "value": "정규직"
+    },
+    {
+      "field": "work_region.leap_grade",
+      "op": "in",
+      "value": [
+        "일반",
+        "우대",
+        "특별"
+      ]
+    },
+    {
+      "any": [
+        [
+          {
+            "field": "company_size",
+            "op": "eq",
+            "value": "중소"
+          }
+        ],
+        [
+          {
+            "field": "company_size",
+            "op": "eq",
+            "value": "중견"
+          },
+          {
+            "field": "in_industrial_complex",
+            "op": "eq",
+            "value": true,
+            "on_unknown": "ask"
+          }
+        ]
+      ]
+    },
+    {
+      "field": "company_participating",
+      "op": "eq",
+      "value": true,
+      "on_unknown": "ask"
+    }
+  ],
+  "benefit": {
+    "type": "schedule",
+    "amount_by": "work_region.leap_grade",
+    "table": {
+      "일반": 1200000,
+      "우대": 1500000,
+      "특별": 1800000
+    },
+    "at_months": [
+      6,
+      12,
+      18,
+      24
+    ]
+  },
+  "sources": [
+    {
+      "title": "복지로 - 청년일자리도약장려금 최대 720만 원 (고용노동부 카드뉴스, 회차별 금액)",
+      "url": "https://www.bokjiro.go.kr/ssis-tbu/cms/pc/news/promotion/1310401_1118.html",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "복지로 - 2026년 청년일자리도약장려금 한눈에 알아보기 (산단 입주 중견기업 포함)",
+      "url": "https://www.bokjiro.go.kr/ssis-tbu/cms/pc/news/promotion/1309561_1118.html",
+      "checked": "2026-11-20"
+    },
+    {
+      "title": "정책브리핑 - 근무 기업 소재지 기준 지역 구분",
+      "url": "https://www.korea.kr/multi/visualNewsView.do?newsId=148975447",
+      "checked": "2026-11-20"
+    }
+  ],
+  "note": "기업이 청년 채용 전에 참여 신청해야 함. 회차마다 청년 본인이 고용24에서 신청. 중도 퇴사 시 남은 회차 미지급. 기업 요건: 5인 이상 우선지원대상기업 또는 산업단지 입주 중견기업."
+}
