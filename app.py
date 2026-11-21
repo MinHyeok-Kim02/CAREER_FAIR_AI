@@ -48,9 +48,26 @@ BASE, RENT = tables()
 SAMPLES = {k: v for k, v in json.loads((ROOT / "samples/offers/gold.json").read_text(encoding="utf-8")).items()
            if not k.startswith("_")}
 SAMPLE_LABEL = {"p1_gumi_midsize": "구미 산단 중견 (공문)", "p1_seoul_sme": "서울 중소 (이메일)",
-                "p2_gumi_sme": "구미 중소 (메신저)", "p3_gumi_dorm": "구미 산단 중견·기숙사 (표)"}
+                "p2_seoul_sme": "서울 중소 (이메일)", "p2_gumi_sme": "구미 중소 (메신저)",
+                "p3_seongnam_midsize": "성남 중견 (공문)", "p3_gumi_dorm": "구미 산단 중견·기숙사 (표)",
+                "p4_gumi_sme": "구미 중소 (문자)", "p4_seongnam_sme": "성남 중소 (채용 플랫폼)"}
+PERSONAS = {p["id"]: p for p in json.loads((ROOT / "samples/personas.json").read_text(encoding="utf-8"))["personas"]}
+PRESET_SAMPLES = {"P1": ("p1_gumi_midsize", "p1_seoul_sme"), "P2": ("p2_seoul_sme", "p2_gumi_sme"),
+                  "P3": ("p3_seongnam_midsize", "p3_gumi_dorm"), "P4": ("p4_gumi_sme", "p4_seongnam_sme")}
 ss = st.session_state
 ss.setdefault("parsed", {"A": None, "B": None})
+
+
+def apply_preset():
+    """시연 페르소나를 고르면 내 정보와 예시 오퍼 두 개를 채운다 (모두 가상 데이터)."""
+    pid = ss.preset
+    if pid not in PERSONAS:
+        return
+    prof = PERSONAS[pid]["profile"]
+    ss.age, ss.home_sido, ss.home_sigungu = prof["age"], prof["home_sido"], prof["home_sigungu"]
+    ss.sample_A, ss.sample_B = PRESET_SAMPLES[pid]
+    ss.parsed = {"A": None, "B": None}
+    ss.pop("result", None)
 
 # ---------------------------------------------------------------- 사이드바: 가정값
 with st.sidebar:
@@ -67,11 +84,16 @@ st.title("진짜연봉")
 st.write("연봉 숫자가 아니라 **세금·지원금·주거비까지 뺀 실제로 남는 돈**으로 두 오퍼를 비교합니다.")
 
 # ---------------------------------------------------------------- ① 내 정보
+st.selectbox("시연용 가상 페르소나", ["(직접 입력)"] + list(PERSONAS), key="preset", on_change=apply_preset,
+             format_func=lambda k: PERSONAS[k]["name"] if k in PERSONAS else k)
 st.subheader("① 내 정보")
 c1, c2, c3, c4 = st.columns(4)
-age = c1.number_input("만 나이", 15, 45, 25)
-home_sido = c2.selectbox("지금 사는 곳(시도)", SIDOS, index=SIDOS.index("경북"))
-home_sigungu = c3.text_input("시군구", "구미시")
+ss.setdefault("age", 25)
+ss.setdefault("home_sido", "경북")
+ss.setdefault("home_sigungu", "구미시")
+age = c1.number_input("만 나이", 15, 45, key="age")
+home_sido = c2.selectbox("지금 사는 곳(시도)", SIDOS, key="home_sido")
+home_sigungu = c3.text_input("시군구", key="home_sigungu")
 homeless = c4.selectbox("무주택", list(YES_NO), index=0)
 profile = {"age": int(age), "home_sido": home_sido, "home_sigungu": home_sigungu or "*",
            "homeless": YES_NO[homeless]}
@@ -82,10 +104,9 @@ st.caption("처우 안내 메일·문자·문서를 붙여 넣으면 AI가 필�
 cols = st.columns(2)
 for slot, col in zip("AB", cols):
     with col:
+        ss.setdefault(f"sample_{slot}", "p1_gumi_midsize" if slot == "A" else "p1_seoul_sme")
         sample = st.selectbox(f"오퍼 {slot} 예시 불러오기", ["(직접 입력)"] + list(SAMPLES),
-                              format_func=lambda k: SAMPLE_LABEL.get(k, k),
-                              index=1 + list(SAMPLES).index("p1_gumi_midsize" if slot == "A" else "p1_seoul_sme"),
-                              key=f"sample_{slot}")
+                              format_func=lambda k: SAMPLE_LABEL.get(k, k), key=f"sample_{slot}")
         default = "" if sample == "(직접 입력)" else (ROOT / f"samples/offers/{sample}.txt").read_text(encoding="utf-8")
         text = st.text_area(f"오퍼 {slot} 원문", default, height=220, key=f"text_{slot}_{sample}")
         if st.button(f"AI로 오퍼 {slot} 읽기", key=f"parse_{slot}", use_container_width=True):
@@ -172,7 +193,7 @@ if "result" in ss:
 
     rows = {"세후 연봉": "net_salary", "제도 혜택": "benefits", "주거비 (−)": "housing_cost",
             "이사·초기 비용 (−)": "one_time_cost", "실질소득": "real_income",
-            "선정 시 추가": "selective", "저축 시 추가": "savings", "확인 필요": "conditional"}
+            "선정 시 추가": "selective", "저축 시 추가 (36개월 만기)": "savings", "확인 필요": "conditional"}
     table = pd.DataFrame({r.name: {k: man(r.periods[period][f]) for k, f in rows.items()} for r in (a, b)})
     st.table(table)
     chart = pd.DataFrame({r.name: {"세후 연봉": r.periods[period]["net_salary"] / 10_000,
