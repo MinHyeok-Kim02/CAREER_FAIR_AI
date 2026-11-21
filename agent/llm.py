@@ -128,3 +128,14 @@ class FakeLLM:
 
     def chat_json(self, messages, **kw):
         return _extract_json(self.chat(messages, **kw))
+
+
+class NoLLM:
+    """LLM 설정이 없거나 쓸 수 없을 때. 호출하면 LLMUnavailable → 규칙 추출·템플릿 설명으로 넘어간다."""
+    last_provider = None
+
+    def chat(self, *a, **k):
+        raise LLMUnavailable("LLM 설정 없음")
+
+    def chat_json(self, *a, **k):
+        raise LLMUnavailable("LLM 설정 없음")
