@@ -64,6 +64,9 @@ class RegionTable:
                 )
                 self._rows[(region.sido, region.sigungu)] = region
 
+    def names(self) -> list[tuple[str, str]]:
+        return list(self._rows)
+
     def lookup(self, sido: str, sigungu: str = "*") -> Region:
         sido = normalize_sido(sido)
         sigungu = (sigungu or "*").strip()

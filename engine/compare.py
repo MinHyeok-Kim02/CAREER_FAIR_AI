@@ -32,20 +32,21 @@ class OfferResult:
 
 def _net_salary_by_month(ctx: dict, payroll: dict, assumptions: dict, horizon: int) -> dict[int, int]:
     start_year = int((ctx.get("hire_date") or "2027-01-01")[:4])
-    nontax = assumptions["nontaxable_meal_monthly"]["value"]
+    nontax = el.nontaxable_monthly(ctx, assumptions)
+    meal_extra = el.separate_meal_monthly(ctx)
     out = {}
     for y in range((horizon + 11) // 12):
         salary = el.salary_in_year(ctx, assumptions, y + 1)
         net = taxmod.net_income(payroll, salary, start_year + y, nontax).net
         for m in range(12 * y + 1, min(12 * (y + 1), horizon) + 1):
-            out[m] = net / 12
+            out[m] = net / 12 + meal_extra
     return out
 
 
 def _housing_by_month(ctx: dict, assumptions: dict, horizon: int) -> dict[int, float]:
     h = assumptions["housing"].get(ctx.get("residence_type") or "", {})
     rent = ctx.get("monthly_rent") or 0
-    fee = h.get("maintenance_fee", 0)
+    fee = ctx["maintenance_fee"] if ctx.get("maintenance_fee") is not None else h.get("maintenance_fee", 0)
     deposit = ctx.get("deposit") or 0
     opp = deposit * assumptions["deposit_opportunity_rate"]["value"] / 12
     return {m: rent + fee + opp for m in range(1, horizon + 1)}

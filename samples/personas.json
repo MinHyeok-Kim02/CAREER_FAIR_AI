@@ -1,50 +1,147 @@
 {
-  "_note": "가상 인물·가상 오퍼 (실제 개인정보 아님, 첨부3 제7조). 월세는 실거래가 연동 전 가상 값. 입사일 2027-01-04 → 개편안 자동 적용.",
+  "_note": "가상 인물·가상 오퍼 (실제 개인정보 아님, 첨부3 제7조). 자취 월세·보증금은 data/rent_cache.csv 실거래가 중앙값(2026.07~09, 전용 40㎡ 이하). 입사일 2027-01-04 → 개편안 자동 적용.",
   "personas": [
     {
-      "id": "P1", "name": "민준 (구미 → 서울)",
-      "profile": {"age": 25, "home_sido": "경북", "home_sigungu": "구미시", "homeless": true},
+      "id": "P1",
+      "name": "민준 (구미 → 서울)",
+      "profile": {
+        "age": 25,
+        "home_sido": "경북",
+        "home_sigungu": "구미시",
+        "homeless": true
+      },
       "offers": [
-        {"name": "구미 산단 중견", "salary": 36000000, "sido": "경북", "sigungu": "구미시",
-         "company_size": "중견", "in_industrial_complex": true, "company_participating": true,
-         "employment_type": "정규직", "residence_type": "본가", "hire_date": "2027-01-04"},
-        {"name": "서울 중소", "salary": 40000000, "sido": "서울", "sigungu": "마포구",
-         "company_size": "중소", "employment_type": "정규직", "residence_type": "자취",
-         "monthly_rent": 550000, "deposit": 10000000, "hire_date": "2027-01-04"}
+        {
+          "name": "구미 산단 중견",
+          "salary": 36000000,
+          "sido": "경북",
+          "sigungu": "구미시",
+          "company_size": "중견",
+          "in_industrial_complex": true,
+          "company_participating": true,
+          "employment_type": "정규직",
+          "residence_type": "본가",
+          "hire_date": "2027-01-04"
+        },
+        {
+          "name": "서울 중소",
+          "salary": 40000000,
+          "sido": "서울",
+          "sigungu": "마포구",
+          "company_size": "중소",
+          "employment_type": "정규직",
+          "residence_type": "자취",
+          "monthly_rent": 520000,
+          "deposit": 10000000,
+          "hire_date": "2027-01-04",
+          "meal_allowance_monthly": 200000,
+          "meal_included": false
+        }
       ]
     },
     {
-      "id": "P2", "name": "서연 (서울 → 구미)",
-      "profile": {"age": 27, "home_sido": "서울", "home_sigungu": "노원구", "homeless": true},
+      "id": "P2",
+      "name": "서연 (서울 → 구미)",
+      "profile": {
+        "age": 27,
+        "home_sido": "서울",
+        "home_sigungu": "노원구",
+        "homeless": true
+      },
       "offers": [
-        {"name": "서울 중소", "salary": 38000000, "sido": "서울", "sigungu": "노원구",
-         "company_size": "중소", "employment_type": "정규직", "residence_type": "본가", "hire_date": "2027-01-04"},
-        {"name": "구미 중소", "salary": 34000000, "sido": "경북", "sigungu": "구미시",
-         "company_size": "중소", "in_industrial_complex": false, "company_participating": true,
-         "employment_type": "정규직", "residence_type": "자취",
-         "monthly_rent": 400000, "deposit": 5000000, "hire_date": "2027-01-04"}
+        {
+          "name": "서울 중소",
+          "salary": 38000000,
+          "sido": "서울",
+          "sigungu": "노원구",
+          "company_size": "중소",
+          "employment_type": "정규직",
+          "residence_type": "본가",
+          "hire_date": "2027-01-04"
+        },
+        {
+          "name": "구미 중소",
+          "salary": 34000000,
+          "sido": "경북",
+          "sigungu": "구미시",
+          "company_size": "중소",
+          "in_industrial_complex": false,
+          "company_participating": true,
+          "employment_type": "정규직",
+          "residence_type": "자취",
+          "monthly_rent": 300000,
+          "deposit": 2000000,
+          "hire_date": "2027-01-04"
+        }
       ]
     },
     {
-      "id": "P3", "name": "지훈 (성남 본가 vs 구미 기숙사)",
-      "profile": {"age": 26, "home_sido": "경기", "home_sigungu": "성남시", "homeless": true},
+      "id": "P3",
+      "name": "지훈 (성남 본가 vs 구미 기숙사)",
+      "profile": {
+        "age": 26,
+        "home_sido": "경기",
+        "home_sigungu": "성남시",
+        "homeless": true
+      },
       "offers": [
-        {"name": "성남 중견", "salary": 42000000, "sido": "경기", "sigungu": "성남시",
-         "company_size": "중견", "employment_type": "정규직", "residence_type": "본가", "hire_date": "2027-01-04"},
-        {"name": "구미 산단 중견 (기숙사)", "salary": 39000000, "sido": "경북", "sigungu": "구미시",
-         "company_size": "중견", "in_industrial_complex": true, "company_participating": true,
-         "employment_type": "정규직", "residence_type": "기숙사", "hire_date": "2027-01-04"}
+        {
+          "name": "성남 중견",
+          "salary": 42000000,
+          "sido": "경기",
+          "sigungu": "성남시",
+          "company_size": "중견",
+          "employment_type": "정규직",
+          "residence_type": "본가",
+          "hire_date": "2027-01-04"
+        },
+        {
+          "name": "구미 산단 중견 (기숙사)",
+          "salary": 39000000,
+          "sido": "경북",
+          "sigungu": "구미시",
+          "company_size": "중견",
+          "in_industrial_complex": true,
+          "company_participating": true,
+          "employment_type": "정규직",
+          "residence_type": "기숙사",
+          "hire_date": "2027-01-04",
+          "maintenance_fee": 50000
+        }
       ]
     },
     {
-      "id": "P4", "name": "하은 (구미 → 성남, 확인 필요 경로)",
-      "profile": {"age": 24, "home_sido": "경북", "home_sigungu": "구미시", "homeless": true},
+      "id": "P4",
+      "name": "하은 (구미 → 성남, 확인 필요 경로)",
+      "profile": {
+        "age": 24,
+        "home_sido": "경북",
+        "home_sigungu": "구미시",
+        "homeless": true
+      },
       "offers": [
-        {"name": "구미 중소 (참여기업 모름)", "salary": 32000000, "sido": "경북", "sigungu": "구미시",
-         "company_size": "중소", "employment_type": "정규직", "residence_type": "본가", "hire_date": "2027-01-04"},
-        {"name": "성남 중소", "salary": 35000000, "sido": "경기", "sigungu": "성남시",
-         "company_size": "중소", "employment_type": "정규직", "residence_type": "자취",
-         "monthly_rent": 600000, "deposit": 10000000, "hire_date": "2027-01-04"}
+        {
+          "name": "구미 중소 (참여기업 모름)",
+          "salary": 32000000,
+          "sido": "경북",
+          "sigungu": "구미시",
+          "company_size": "중소",
+          "employment_type": "정규직",
+          "residence_type": "본가",
+          "hire_date": "2027-01-04"
+        },
+        {
+          "name": "성남 중소",
+          "salary": 35000000,
+          "sido": "경기",
+          "sigungu": "성남시",
+          "company_size": "중소",
+          "employment_type": "정규직",
+          "residence_type": "자취",
+          "monthly_rent": 520000,
+          "deposit": 10000000,
+          "hire_date": "2027-01-04"
+        }
       ]
     }
   ]

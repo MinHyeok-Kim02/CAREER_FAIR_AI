@@ -76,6 +76,9 @@ def build_context(profile: dict, offer: dict, regions: RegionTable, payroll: dic
         "monthly_rent": monthly_rent,
         "deposit": deposit,
         "hire_date": offer.get("hire_date"),
+        "maintenance_fee": offer.get("maintenance_fee"),          # 오퍼에 관리비·기숙사비가 있으면 가정값 대신 사용
+        "meal_allowance_monthly": offer.get("meal_allowance_monthly"),
+        "meal_included": offer.get("meal_included"),              # True: 연봉에 포함, False: 연봉과 별도 지급
         "work_region": work.as_dict(),
         "residence_region": residence.as_dict(),
         "relocating": (residence.sido, residence.sigungu) != (home.sido, home.sigungu),
@@ -223,6 +226,25 @@ def rejected(programs: list[dict], ctx: dict, include_planned: bool = False) -> 
 
 
 # ---------------------------------------------------------------- 혜택 계산
+MEAL_NONTAX_CAP = 200_000   # 식대 비과세 한도(월)
+
+
+def nontaxable_monthly(ctx: dict, assumptions: dict) -> int:
+    """연봉 안에 포함된 비과세 식대(월). 별도 지급이면 연봉에서 빼지 않는다."""
+    meal = ctx.get("meal_allowance_monthly")
+    if meal and ctx.get("meal_included"):
+        return min(meal, MEAL_NONTAX_CAP)
+    return assumptions["nontaxable_meal_monthly"]["value"]
+
+
+def separate_meal_monthly(ctx: dict) -> int:
+    """연봉과 별도로 받는 식대(월, 비과세 한도까지). 세후 소득에 그대로 더한다."""
+    meal = ctx.get("meal_allowance_monthly")
+    if meal and ctx.get("meal_included") is False:
+        return min(meal, MEAL_NONTAX_CAP)
+    return 0
+
+
 def salary_in_year(ctx: dict, assumptions: dict, year_index: int) -> int:
     """입사 후 n년차(1부터) 연봉. 연봉 상승률 가정 적용."""
     g = assumptions["salary_growth_rate"]["value"]
@@ -257,7 +279,7 @@ def timeline(decision: Decision, ctx: dict, payroll: dict, assumptions: dict,
         else:
             years = b["years"]
         start_year = int((ctx.get("hire_date") or "2027-01-01")[:4])
-        nontax = assumptions["nontaxable_meal_monthly"]["value"]
+        nontax = nontaxable_monthly(ctx, assumptions)
         for y in range(1, years + 1):
             saving = taxmod.tax_reduction_saving(
                 payroll, salary_in_year(ctx, assumptions, y), start_year + y - 1,
