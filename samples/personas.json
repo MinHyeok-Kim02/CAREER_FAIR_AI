@@ -140,7 +140,8 @@
           "residence_type": "자취",
           "monthly_rent": 520000,
           "deposit": 10000000,
-          "hire_date": "2027-01-04"
+          "hire_date": "2027-01-04",
+          "in_industrial_complex": true
         }
       ]
     }

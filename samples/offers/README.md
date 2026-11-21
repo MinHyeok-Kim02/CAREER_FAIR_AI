@@ -9,3 +9,7 @@
 | p1_seoul_sme.txt | P1 민준 — 서울 중소 | 이메일 |
 | p2_gumi_sme.txt | P2 서연 — 구미 중소 | 메신저 메시지 |
 | p3_gumi_dorm.txt | P3 지훈 — 구미 산단 중견(기숙사) | 표 요약 |
+| p2_seoul_sme.txt | P2 서연 — 서울 중소 | 이메일 |
+| p3_seongnam_midsize.txt | P3 지훈 — 성남 중견 | 공문형 |
+| p4_gumi_sme.txt | P4 하은 — 구미 중소(참여 모름) | 문자 메시지 |
+| p4_seongnam_sme.txt | P4 하은 — 성남 중소 | 채용 플랫폼 표 |
