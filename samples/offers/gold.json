@@ -1,0 +1,39 @@
+{
+  "_note": "가상 오퍼레터의 정답 추출값. LLM 파싱 정확도 확인과 테스트에 사용. 기준일 2026-11-21.",
+  "p1_gumi_midsize": {
+    "persona": ["P1", "구미 산단 중견"],
+    "values": {"company_name": "(주)한빛정밀테크", "salary": 36000000, "sido": "경북", "sigungu": "구미시",
+               "in_industrial_complex": true, "company_size": "중견", "employee_count": 620,
+               "employment_type": "정규직", "hire_date": "2027-01-04", "housing": null,
+               "housing_cost_monthly": null, "housing_allowance_monthly": null,
+               "meal_allowance_monthly": null, "meal_included": null, "company_participating": true},
+    "answers": {"residence_type": "본가"}
+  },
+  "p1_seoul_sme": {
+    "persona": ["P1", "서울 중소"],
+    "values": {"company_name": "블루웨이브소프트", "salary": 40000000, "sido": "서울", "sigungu": "마포구",
+               "in_industrial_complex": null, "company_size": "중소", "employee_count": 85,
+               "employment_type": "정규직", "hire_date": "2027-01-04", "housing": "없음",
+               "housing_cost_monthly": null, "housing_allowance_monthly": null,
+               "meal_allowance_monthly": 200000, "meal_included": false, "company_participating": null},
+    "answers": {"residence_type": "자취", "monthly_rent": 520000, "deposit": 10000000}
+  },
+  "p2_gumi_sme": {
+    "persona": ["P2", "구미 중소"],
+    "values": {"company_name": "대경오토메이션", "salary": 34000000, "sido": "경북", "sigungu": "구미시",
+               "in_industrial_complex": false, "company_size": "중소", "employee_count": 40,
+               "employment_type": "정규직", "hire_date": "2027-01-04", "housing": "없음",
+               "housing_cost_monthly": null, "housing_allowance_monthly": null,
+               "meal_allowance_monthly": null, "meal_included": null, "company_participating": true},
+    "answers": {"residence_type": "자취", "monthly_rent": 300000, "deposit": 2000000}
+  },
+  "p3_gumi_dorm": {
+    "persona": ["P3", "구미 산단 중견 (기숙사)"],
+    "values": {"company_name": "세진머티리얼즈", "salary": 39000000, "sido": "경북", "sigungu": "구미시",
+               "in_industrial_complex": true, "company_size": "중견", "employee_count": null,
+               "employment_type": "정규직", "hire_date": "2027-01-04", "housing": "기숙사",
+               "housing_cost_monthly": 50000, "housing_allowance_monthly": null,
+               "meal_allowance_monthly": null, "meal_included": null, "company_participating": null},
+    "answers": {"company_participating": true}
+  }
+}
