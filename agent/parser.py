@@ -36,6 +36,12 @@ ENUMS = {
     "employment_type": {"정규직", "계약직"},
     "housing": {"기숙사", "사택", "주거지원금", "없음"},
 }
+# 예/아니오 항목은 원문에 이 단어 중 하나라도 있어야 값으로 인정한다 (추측 차단)
+GROUNDING_WORDS = {
+    "in_industrial_complex": ("산단", "산업단지", "공단"),
+    "company_participating": ("도약", "장려금"),
+    "meal_included": ("식대", "식비"),
+}
 SYSTEM = """너는 채용 오퍼(처우 안내) 문서에서 정보를 옮겨 적는 도우미다.
 규칙:
 - 원문에 있는 내용만 옮긴다. 없거나 애매하면 null. 추측하지 않는다.
@@ -140,6 +146,11 @@ def validate(values: dict, text: str, regions: RegionTable) -> list[str]:
         values["hire_date"] = None
     for k in ("in_industrial_complex", "meal_included", "company_participating"):
         if values[k] not in (True, False, None):
+            values[k] = None
+    # 원문에 관련 단어가 전혀 없는데 예/아니오를 답했다면 AI의 추측이다 → 비우고 사용자에게 묻는다
+    for k, words in GROUNDING_WORDS.items():
+        if values[k] is not None and not any(w in text for w in words):
+            warns.append(f"'{k}' 값은 원문 근거가 없어 비웠습니다. 직접 확인해 주세요.")
             values[k] = None
     return warns
 

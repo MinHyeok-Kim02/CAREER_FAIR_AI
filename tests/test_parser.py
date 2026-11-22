@@ -55,6 +55,14 @@ def test_invalid_values_are_cleared():
     assert len(p.warnings) == 3
 
 
+def test_guess_without_grounding_is_cleared():
+    """원문에 산단 언급이 없는데 AI가 '산업단지 안'이라고 추측하면 비운다 (11/22 실측 오류 사례)."""
+    g = dict(GOLD["p4_gumi_sme"]["values"], in_industrial_complex=True)
+    p = parse_offer(_text("p4_gumi_sme"), FakeLLM([json.dumps({"values": g})]), REGIONS, TODAY)
+    assert p.values["in_industrial_complex"] is None
+    assert any("원문 근거" in w for w in p.warnings)
+
+
 def test_rule_fallback_when_llm_down():
     class Down:
         def chat_json(self, *a, **k):
