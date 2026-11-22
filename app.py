@@ -47,10 +47,12 @@ def llm():
 BASE, RENT = tables()
 SAMPLES = {k: v for k, v in json.loads((ROOT / "samples/offers/gold.json").read_text(encoding="utf-8")).items()
            if not k.startswith("_")}
-SAMPLE_LABEL = {"p1_gumi_midsize": "구미 산단 중견 (공문)", "p1_seoul_sme": "서울 중소 (이메일)",
-                "p2_seoul_sme": "서울 중소 (이메일)", "p2_gumi_sme": "구미 중소 (메신저)",
-                "p3_seongnam_midsize": "성남 중견 (공문)", "p3_gumi_dorm": "구미 산단 중견·기숙사 (표)",
-                "p4_gumi_sme": "구미 중소 (문자)", "p4_seongnam_sme": "성남 중소 (채용 플랫폼)"}
+# 표시 이름은 서로 달라야 한다: Streamlit은 선택지를 표시 이름으로 구분해서, 같은 이름이 있으면 선택이 바뀐다
+SAMPLE_LABEL = {"p1_gumi_midsize": "민준 · 구미 산단 중견 (공문)", "p1_seoul_sme": "민준 · 서울 중소 (이메일)",
+                "p2_seoul_sme": "서연 · 서울 중소 (이메일)", "p2_gumi_sme": "서연 · 구미 중소 (메신저)",
+                "p3_seongnam_midsize": "지훈 · 성남 중견 (공문)", "p3_gumi_dorm": "지훈 · 구미 산단 중견·기숙사 (표)",
+                "p4_gumi_sme": "하은 · 구미 중소 (문자)", "p4_seongnam_sme": "하은 · 성남 중소 (채용 플랫폼)"}
+assert len(set(SAMPLE_LABEL.values())) == len(SAMPLE_LABEL)
 PERSONAS = {p["id"]: p for p in json.loads((ROOT / "samples/personas.json").read_text(encoding="utf-8"))["personas"]}
 PRESET_SAMPLES = {"P1": ("p1_gumi_midsize", "p1_seoul_sme"), "P2": ("p2_seoul_sme", "p2_gumi_sme"),
                   "P3": ("p3_seongnam_midsize", "p3_gumi_dorm"), "P4": ("p4_gumi_sme", "p4_seongnam_sme")}
