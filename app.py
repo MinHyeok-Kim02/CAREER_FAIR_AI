@@ -248,7 +248,7 @@ if "result" in ss:
 
 # ---------------------------------------------------------------- 점검 도구 (발표·검증용)
 with st.sidebar.expander("점검 도구"):
-    if st.button("오퍼 파싱 정확도 확인 (가상 4종)"):
+    if st.button("오퍼 파싱 정확도 확인 (가상 오퍼 전체)"):
         client, total, ok_n = llm(), 0, 0
         for name, g in SAMPLES.items():
             p = parse_offer((ROOT / f"samples/offers/{name}.txt").read_text(encoding="utf-8"), client,
